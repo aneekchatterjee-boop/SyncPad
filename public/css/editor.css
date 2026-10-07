@@ -1,0 +1,128 @@
+/* Editor layers. The <pre>, the bands, the peer layer and the textarea must
+   share font metrics exactly; change them together. */
+
+.ed { position: absolute; inset: 0; }
+.ed-scroll { position: absolute; inset: 0; overflow: auto; overscroll-behavior: contain; }
+.ed-sizer { display: flex; position: relative; min-width: 100%; min-height: 100%; }
+
+.ed-gutter {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  flex: none;
+  background: var(--black);
+  box-shadow: 1px 0 0 var(--panel);
+  user-select: none;
+}
+.ed-ln {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22px;
+  padding-right: 12px;
+  font: 12px/22px var(--font);
+  text-align: right;
+  color: rgba(147, 171, 147, 0.55);
+  cursor: pointer;
+}
+.ed-ln:hover { color: var(--text); background: rgba(138, 171, 139, 0.08); }
+.ed-ln.is-active { color: var(--text-strong); }
+.ed-ln.is-marked { color: var(--cream); }
+.ed-ln i { position: absolute; left: 7px; top: 7px; width: 8px; height: 8px; border-radius: 2px; }
+
+.ed-main { position: relative; flex: none; }
+
+.ed-code, .ed-input, .ed-probe {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  tab-size: 4;
+  font-variant-ligatures: none;
+  font-kerning: none;
+}
+
+.ed-code {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 10px 14px;
+  white-space: pre;
+  color: var(--text);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ed-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 10px 14px;
+  border: 0;
+  outline: 0;
+  resize: none;
+  overflow: hidden;
+  white-space: pre;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--cream);
+  z-index: 3;
+}
+.ed-input::selection { background: rgba(241, 250, 160, 0.24); color: transparent; }
+.ed-input::placeholder { color: var(--muted); opacity: 0.6; }
+.ed.is-readonly .ed-input { caret-color: transparent; cursor: default; }
+
+.ed-probe { position: absolute; top: 0; left: 0; visibility: hidden; white-space: pre; pointer-events: none; }
+
+.ed-bands { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.band { position: absolute; left: 0; height: 22px; }
+.band-self { background: rgba(189, 211, 173, 0.05); }
+.band-pin { background: color-mix(in srgb, var(--c) 15%, transparent); box-shadow: inset 3px 0 0 var(--c); }
+
+.ed-peers { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.peer-sel { position: absolute; height: 22px; }
+.peer-caret {
+  position: absolute;
+  width: 2px;
+  height: 22px;
+  margin-left: -1px;
+  background: var(--c);
+  box-shadow: 0 0 6px var(--c);
+}
+.peer-flag {
+  position: absolute;
+  left: -1px;
+  bottom: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--c);
+  color: var(--void);
+  font: 700 11px/16px var(--font);
+  padding: 0 6px;
+  border-radius: 3px 3px 3px 0;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+.peer-flag.is-below { top: 100%; bottom: auto; border-radius: 0 3px 3px 3px; }
+.peer-caret.is-typing .peer-flag { opacity: 1; }
+.peer-flag .dots i { background: var(--void); }
+
+/* syntax colours (all from the theme palette) */
+.t-kw { color: var(--cream); font-weight: 700; }
+.t-str { color: var(--dot-lime); }
+.t-num, .t-lit { color: var(--cream-2); }
+.t-com { color: var(--muted); font-style: italic; }
+.t-fn { color: var(--dot-white); }
+.t-op { color: var(--sage); }
+.t-md-h { color: var(--cream); font-weight: 700; }
+.t-md-code { color: var(--dot-lime); }
+.t-md-fence { color: var(--muted); }
+.t-md-quote { color: var(--muted); font-style: italic; }
+.t-md-list, .t-md-task { color: var(--cream); }
+.t-md-bold { color: var(--dot-white); font-weight: 700; }
+.t-md-link { color: var(--dot-lime); text-decoration: underline; }
+.t-md-rule { color: var(--sage); }
