@@ -41,7 +41,7 @@ Built with Node.js, Express and Socket.IO. The frontend is plain ES modules with
 **Requirements:** Node.js **20.12 or newer** (tested on Node 24) and npm.
 
 ```bash
-git clone <your-fork-url> syncpad
+git clone https://github.com/aneekchatterjee-boop/SyncPad.git
 cd syncpad
 npm install
 npm start
